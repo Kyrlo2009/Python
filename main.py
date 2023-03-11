@@ -10,11 +10,24 @@ class Student:
         self.ticher = random.randint(1, 3)
         self.alive = True
 
-    def cheating(self):
-        print("TIME TO CHEATING")
-        self.cheat += 50
-        self.gladness -= 10
-        self.end_of_day()
+    def to_study(self):
+        print("Time to study")
+        self.cheat += 3
+        self.progress += 5
+        self.gladness -= 5
+
+    def to_sleep(self):
+        print("I will sleep")
+        self.cheat -= 1
+        self.gladness += 3
+        self.progress -= 2
+
+    def to_chill(self):
+        print("Rest time")
+        self.cheat -= 2
+        self.gladness += 5
+        self.progress -= 5
+
 
     def stydyX4(self):
         print("TIME TO STUDY VERY MUCH")
@@ -22,24 +35,11 @@ class Student:
         self.gladness -= 20
         self.end_of_day()
 
-
-    def to_study(self):
-        print("Time to study")
-        self.cheat += 5
-        self.progress += 5
-        self.gladness -= 5
-
-    def to_sleep(self):
-        print("I will sleep")
-        self.cheat -= 2
-        self.gladness += 3
-        self.progress -= 1
-
-    def to_chill(self):
-        print("Rest time")
-        self.cheat -= 3
-        self.gladness += 5
-        self.progress -= 4
+    def cheating(self):
+        print("TIME TO CHEATING")
+        self.cheat += 50
+        self.gladness -= 10
+        self.end_of_day()
 
     def fate(self):
         cube_of_fate = random.randint(1, 2)
@@ -57,16 +57,24 @@ class Student:
                 print(f"Exam = {round(self.progress, 2)}%")
             elif self.progress < 70:
                 print("Cast out…")
-                print(f"Exam = {round(self.progress, 2)}%")
-                self.alive = False
+                if self.progress <= 0:
+                    print(f"Exam = 0%")
+                    self.alive = False
+                if self.progress > 0:
+                    print(f"Exam = {round(self.progress, 2)}%")
+                    self.alive = False
         if self.cube_of_fate == 2:
             if self.cheat >= 70:
                 print(f"Exam = {round(self.cheat, 2)}%")
             elif self.cheat < 70:
                 if self.cheat > 30:
                     print("Cast out…")
-                    print(f"Exam = {round(self.cheat, 2)}%")
-                    self.alive = False
+                    if self.cheat <= 0:
+                        print(f"Exam = 0%")
+                        self.alive = False
+                    if self.cheat > 0:
+                        print(f"Exam = {round(self.cheat, 2)}%")
+                        self.alive = False
             elif self.ticher == 5:
                 print("Cheating of exam")
                 print("Cast out…")
@@ -95,6 +103,13 @@ class Student:
     def live(self, day):
         day = "Day " + str(day) + " of " + self.name + " life"
         print(f"{day:=^50}")
+
+        if self.progress <= -5:
+            if self.gladness >= 5:
+                self.to_study()
+        if self.gladness <= 5:
+            if self.progress >= 5:
+                self.to_chill()
 
         if str(day) == "Day " + str(181) + " of " + self.name + " life":
             self.fate()
