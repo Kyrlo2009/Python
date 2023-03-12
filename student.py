@@ -106,6 +106,10 @@ class Student:
         if self.progress < -15:
             print("Cast out…")
             self.alive = False
+        elif self.money == 0:
+            print("Cast out…")
+            print("You paid all the money")
+            self.alive = False
         elif self.gladness <= 0:
             print("Depression…")
             self.alive = False
