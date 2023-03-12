@@ -2,49 +2,54 @@ import random
 
 
 class Dog:
-    def __init__(self, years, nat_of_dog, name=None):
+    def __init__(self, name, nation):
         self.hunger = 10
-        self.age = years
-        self.nation = nat_of_dog
+        self.age = 6
+        self.nation = nation
         self.irritation = 0
         self.happiness = 10
         self.name = name
         self.alive = True
+        self.cube_of_bf = random.randint(1, 5)
+        self.cube_of_d = random.randint(1, 5)
 
-    def breakfast(self, cube_of_bf):
+    def breakfast(self):
         print("Time to breakfast")
-        cube_of_bf = random.randint(1, 6)
-        if cube_of_bf == 10:
-            self.hunger -= 2
+        cube_of_bf = random.randint(1, 5)
+        if cube_of_bf == 5:
+            print("No\n")
+            self.hunger -= 3
             self.irritation += 3
-            self.happiness -= 2
-        if cube_of_bf >= 10:
-            self.hunger += 2
+            self.happiness -= 4
+        if cube_of_bf < 5:
+            print("Hrum-hrum-hrum\n")
+            self.hunger += 3
             self.happiness += 1
 
     def play(self):
         print("Time to play")
         print("Hi")
-        print(f"I am {round(self.nation)}")
-        self.irritation -= 1
-        self.happiness += 1
-        self.hunger -= 3
-
-    def sleep(self):
-        print("Time to slee...\nZ-z-z")
-        self.hunger -= 2
+        print(f"I am " + self.name + ". I am " + self.nation + "\n")
         self.irritation -= 1
         self.happiness += 2
+        self.hunger -= 4
 
-    def dinner(self, cube_of_d):
+    def sleep(self):
+        print("Time to slee...\nZ-z-z\n")
+        self.hunger -= 2
+        self.irritation -= 2
+        self.happiness += 2
+
+    def dinner(self):
         print("Time to dinner")
-        cube_of_d = random.randint(1, 6)
-        if cube_of_d == 10:
-            self.hunger -= 2
-            self.irritation += 2
-            self.happiness -= 2
-        if cube_of_d >= 10:
-            self.hunger += 2
+        print("Hrum-hrum-hrum\n")
+        cube_of_d = random.randint(1, 5)
+        if cube_of_d == 5:
+            self.hunger -= 3
+            self.irritation += 5
+            self.happiness -= 5
+        if cube_of_d < 5:
+            self.hunger += 3
             self.happiness += 1
 
     def is_alive(self):
@@ -75,15 +80,17 @@ class Dog:
                 self.play()
 
         live_cube = random.randint(1, 2)
+        self.breakfast()
         if live_cube == 1:
             self.play()
         elif live_cube == 2:
             self.sleep()
+        self.dinner()
         self.end_of_day()
         self.is_alive()
 
-richard = Dog(name="Richard", nat_of_dog="Chihuahua", years=6)
+rich = Dog(name="Richard", nation="Chihuahua")
 for day in range(365):
-    if richard.alive == False:
+    if rich.alive == False:
         break
-    richard.live(day+1)
+    rich.live(day+1)
