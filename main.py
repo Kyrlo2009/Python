@@ -8,6 +8,7 @@ class Student:
         self.progress = 0
         self.cube_of_fate = 1
         self.ticher = random.randint(1, 3)
+        self.yesN = random.randint(1, 2)
         self.alive = True
 
     def to_study(self):
@@ -106,10 +107,18 @@ class Student:
 
         if self.progress <= -5:
             if self.gladness >= 5:
-                self.to_study()
+                self.yesN = random.randint(1, 2)
+                if self.yesN == 1:
+                    self.to_study()
+                if self.yesN == 2:
+                    pass
         if self.gladness <= 5:
             if self.progress >= 5:
-                self.to_chill()
+                self.yesN = random.randint(1, 2)
+                if self.yesN == 1:
+                    self.to_chill()
+                if self.yesN == 2:
+                    pass
 
         if str(day) == "Day " + str(181) + " of " + self.name + " life":
             self.fate()
