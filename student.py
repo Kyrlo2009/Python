@@ -9,6 +9,7 @@ class Student:
         self.cube_of_fate = 1
         self.ticher = random.randint(1, 3)
         self.yesN = random.randint(1, 2)
+        self.money = 1500
         self.alive = True
 
     def to_study(self):
@@ -16,24 +17,34 @@ class Student:
         self.cheat += 3
         self.progress += 5
         self.gladness -= 5
+        self.money -= 40
 
     def to_sleep(self):
         print("I will sleep")
         self.cheat -= 1
         self.gladness += 3
-        self.progress -= 2
+        self.progress -= 1
+        self.money -= 10
 
     def to_chill(self):
         print("Rest time")
         self.cheat -= 2
         self.gladness += 5
-        self.progress -= 5
+        self.progress -= 3
+        self.money -= 70
 
+    def work(self):
+        print("Time to work...")
+        self.cheat -= 2
+        self.gladness -= 3
+        self.progress -= 2
+        self.money += 200
 
     def stydyX4(self):
         print("TIME TO STUDY VERY MUCH")
         self.progress += 60
         self.gladness -= 20
+        self.money -= 20
         self.end_of_day()
 
     def cheating(self):
@@ -41,6 +52,7 @@ class Student:
         self.cheat += 50
         self.gladness -= 10
         self.end_of_day()
+        self.money -= 20
 
     def fate(self):
         cube_of_fate = random.randint(1, 2)
@@ -55,7 +67,10 @@ class Student:
         if self.cube_of_fate == 1:
             if self.progress >= 70:
                 print("You pass the exam!")
+                self.money += 1500
                 print(f"Exam = {round(self.progress, 2)}%")
+                print(f"Money + 1500")
+                print(f"Money = {round(self.money)}")
             elif self.progress < 70:
                 print("Cast out…")
                 if self.progress <= 0:
@@ -67,6 +82,8 @@ class Student:
         if self.cube_of_fate == 2:
             if self.cheat >= 70:
                 print(f"Exam = {round(self.cheat, 2)}%")
+                print(f"Money + 1500")
+                print(f"Money = {round(self.money)}")
             elif self.cheat < 70:
                 if self.cheat > 30:
                     print("Cast out…")
@@ -100,25 +117,38 @@ class Student:
         print(f"Cheating = {self.cheat}")
         print(f"Gladness = {self.gladness}")
         print(f"Progress = {round(self.progress, 2)}")
+        print(f"Money = {self.money}")
 
     def live(self, day):
         day = "Day " + str(day) + " of " + self.name + " life"
         print(f"{day:=^50}")
 
-        if self.progress <= -5:
-            if self.gladness >= 5:
-                self.yesN = random.randint(1, 2)
-                if self.yesN == 1:
-                    self.to_study()
-                if self.yesN == 2:
-                    pass
-        if self.gladness <= 5:
-            if self.progress >= 5:
-                self.yesN = random.randint(1, 2)
-                if self.yesN == 1:
-                    self.to_chill()
-                if self.yesN == 2:
-                    pass
+        if str(day) != str(182) + " of " + self.name + " life":
+            if str(day) != str(181) + " of " + self.name + " life":
+                if str(day) != "Day " + str(364) + " of " + self.name + " life":
+                    if str(day) != "Day " + str(365) + " of " + self.name + " life":
+                        if self.money <= 150:
+                            if self.progress >= -11:
+                                if self.gladness >= 5:
+                                    self.work()
+                                    self.end_of_day()
+                                    self.is_alive()
+                                    print("Today`s evening...")
+        else:
+            if self.progress <= -5:
+                if self.gladness >= 5:
+                    self.yesN = random.randint(1, 2)
+                    if self.yesN == 1:
+                        self.to_study()
+                    if self.yesN == 2:
+                        pass
+            if self.gladness <= 5:
+                if self.progress >= 5:
+                    self.yesN = random.randint(1, 2)
+                    if self.yesN == 1:
+                        self.to_chill()
+                    if self.yesN == 2:
+                        pass
 
         if str(day) == "Day " + str(181) + " of " + self.name + " life":
             self.fate()
