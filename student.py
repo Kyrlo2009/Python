@@ -124,13 +124,13 @@ class Student:
         print(f"Money = {self.money}")
 
     def live(self, day):
-        day = "Day " + str(day) + " of " + self.name + " life"
-        print(f"{day:=^50}")
+        day_format = "Day " + str(day) + " of " + self.name + " life"
+        print(f"{day_format:=^50}")
 
-        if str(day) != str(182) + " of " + self.name + " life":
-            if str(day) != str(181) + " of " + self.name + " life":
-                if str(day) != "Day " + str(364) + " of " + self.name + " life":
-                    if str(day) != "Day " + str(365) + " of " + self.name + " life":
+        if day != 182:
+            if day != 181:
+                if day != 364:
+                    if day != 365:
                         if self.money <= 150:
                             if self.progress >= -11:
                                 if self.gladness >= 5:
@@ -154,13 +154,13 @@ class Student:
                     if self.yesN == 2:
                         pass
 
-        if str(day) == "Day " + str(181) + " of " + self.name + " life":
+        if day == 181:
             self.fate()
-        elif str(day) == "Day " + str(364) + " of " + self.name + " life":
+        elif day == 364:
             self.fate()
-        elif str(day) == "Day " + str(182) + " of " + self.name + " life":
+        elif day == 182:
             self.exam()
-        elif str(day) == "Day " + str(365) + " of " + self.name + " life":
+        elif day == 365:
             self.exam()
         else:
             live_cube = random.randint(1, 3)
